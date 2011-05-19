@@ -24,3 +24,445 @@ body {
 	background: #FFF;
 }
 
+
+@import "global.reset";
+@import "global.methods";
+@import "global.utility";
+
+/* swatches */
+@blue: #0000FF;
+@green: #00FF00;
+@red : #FF0000;
+
+/* global vars*/
+@radius: 5px;
+@pad: 15px;
+@marg: 15px;
+
+
+/* =Initial Page Structure
+------------------------------------------------------------ */
+
+html {
+	font: 12px/1.5 "Helvetica Neue", Arial, Helvetica, sans-serif;
+	color: #555;
+	background: #fff;
+}
+
+body {
+	position: relative;
+	width: 960px;
+	margin: 0 auto;
+	line-height: 1.5;
+}
+
+#header {
+	position: relative;
+}
+
+.sub #header {
+	position: relative;
+}
+
+#content {
+	position: relative;
+}
+
+.sub #content {
+	position: relative;
+}
+
+#footer {
+	clear: both;
+	position: relative;
+}
+
+
+/* =Basic Element Styles
+------------------------------------------------------------ */
+
+h1, h2, h3, h4, h5, h6 {
+	font-weight: normal;
+}
+
+#main h2, #main h3, #main h4, #main h5, #main h6 {
+	padding-top: 5px;
+}
+
+h1 {
+	font-size: 22px;
+}
+#main h1 {
+	color: #55251F;
+}
+
+h2 {
+	font-size: 18px;
+}
+#main h2 {
+	color: #35551C;
+}
+
+h3 {
+	font-size: 15px;
+}
+#main h3 {
+	color: #184C99;
+}
+
+h4 {
+	font-size: 12px;
+	font-weight: bold;
+}
+
+h5 {
+	font-size: 12px;
+	font-weight: bold;
+}
+
+h6 {
+	font-size: 12px;
+	font-weight: bold;
+}
+
+p {
+	padding-bottom: 15px;
+}
+
+#main blockquote {
+	padding: 0 20px 0 30px;
+	font-style: italic;
+	color: #666;
+}
+
+#main ul {
+	padding: 0 0 10px 30px;
+}
+
+#main ul li {
+	padding: 0 0 5px 0;
+	list-style: disc outside;
+}
+
+#main ul ul {
+	padding-bottom: 0;
+	padding-top: 5px;
+}
+
+#main ul ul li {
+	list-style-type: circle;
+}
+
+#main ol {
+	padding: 0 0 10px 30px;
+}
+
+#main ol li {
+	padding: 0 0 5px 0;
+	list-style: decimal;
+}
+
+#main ol ol {
+	padding-bottom: 0;
+	padding-top: 5px;
+}
+
+#main ol ol li {
+	list-style-type: lower-latin;
+}
+
+#main pre,
+#main code {
+	font-family: 'Andale Mono', 'Lucida Console', monospace;
+}
+
+.spacer {
+	padding-top: 15px;
+}
+
+input,
+textarea,
+select {
+	font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+	line-height: normal; /* Used to normalize the height between labels and inputs in Firefox */
+	font-size: 12px;
+	color: #222;
+}
+
+input.inactive {
+	color: #a9a9a9;
+}
+
+img,
+a img {
+	border: 0;
+	vertical-align: middle;
+}
+
+a {
+	color: #f0f;
+}
+
+a:visited {
+	color: #f0f;
+}
+
+a:hover {
+	color: #f00;
+	text-decoration: none;
+}
+
+a.hover-box img,
+a.hover-box img.original {
+	float: left;
+	position: relative;
+}
+
+a.hover-box img.hover {
+	display: none;
+}
+
+a.hover-box {
+	position: relative;
+	float: left;
+	display: block;
+}
+
+a.hover-box:hover {
+	display: block;
+	font-size: 100%;
+	z-index: 1;
+}
+
+a.hover-box:hover img.hover {
+	display: block;
+	position: absolute;
+	float: left;
+	left: 0;
+	top: 0;
+	z-index: 10;
+}
+
+
+	/* =Tables
+------------------------------------------------------------ */
+
+#content #main table {
+	width: 100%;
+	margin-bottom: 15px;
+	border-collapse: collapse;
+	border-spacing: 0;
+
+	th {
+		font-weight: bold;
+		text-align: left;
+		background: #c3d9ff;
+	}
+
+	th,
+	td {
+		padding: 5px 10px 5px 5px;
+		border: 1px solid #999;
+	}
+
+	td {
+		background: #fff;
+	}
+
+	tbody tr:nth-child(even) td,
+	tbody tr.even td {
+		background: #eee;
+	}
+
+	tfoot {
+		font-style: italic;
+	}
+
+}
+
+
+	/* =Forms
+------------------------------------------------------------ */
+
+#content #main fieldset {	
+	legend {
+		font-size: 14px;
+		font-weight: bold;
+		padding-bottom: 18px;
+	}
+
+	p {
+		padding: 0 0 15px 150px;
+		position: relative;
+		clear: left;
+		zoom: 1; /* Fixes and IE bug that causes text to jump that has a negative margin */
+
+		label {
+			line-height: normal; /* Used to normalize the height between labels and inputs in Firefox */
+		}
+
+		label.inner { /* Be sure to mirror the padding and borders of inputs to have a consistent height */
+			display: inline-block;
+			position: relative;
+			padding: 4px 0;
+		}
+
+		label.outer {
+			float: left;
+			text-align: right;
+			width: 140px;
+			padding: 4px 0;
+			margin-left: -150px;
+		}
+
+		label sup { /* Used to indicate a required field */
+			color: #f00;
+		}
+
+		input[type=text],
+		input[type=password],
+		input.text,
+		textarea,
+		select {
+			border: 1px solid #bbb;
+			width: 292px;
+			padding: 3px;
+			background-color: #fff;
+		}
+
+		input.small {
+			width: 120px;
+		}
+
+		input[type=text]:focus,
+		input[type=password]:focus,
+		input.text:focus,
+		textarea:focus,
+		select:focus {
+			border-color: #666;
+		}
+
+		textarea {
+			height: 175px;
+		}
+
+		span.radcheck {
+			display: block;
+
+			input {
+				margin: 0 2px 0 0;
+			}
+
+		}
+
+		select { /* Dropdown width and padding is inconsistent with regular inputs */
+			width: 300px;
+			padding: 2px;
+		}
+
+		input.submit { /* Text based input button */
+			padding: 5px 10px;
+			border: 1px solid #a2adb4;
+			-webkit-border-radius: 5px;
+			-moz-border-radius: 5px;
+			border-radius: 5px;
+			background: #d9e3e9;
+			color: #3e6d95;
+		}
+
+
+		input.submit-button,
+		input[type="image"] { /* Image based input button */
+			float: left;
+		}
+
+		em.info {
+			padding-left: 10px;
+		}
+
+	}
+
+	span.error {
+		position: absolute;
+		left: 460px; /* Width of label (150) + input (300) + 10 pixels of space */
+		top: 0;
+		display: block;
+		color: #f00;
+		padding: 4px 0;
+		line-height: normal;
+	}
+}
+
+
+/* =Utilities
+------------------------------------------------------------ */
+
+.left						 { float: left; position: relative; margin: 0 10px 5px 0; }
+.right					 { float: right; position: relative; margin: 0 0 5px 10px; }
+.clear					 { clear: both; }
+.clear-left			 { clear: left; }
+.clear-right		 { clear: right; }
+.clear-none			 { clear: none; }
+.center					 { text-align: center; }
+.autoclear:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+.autoclear			 { display: inline-block; }
+.autoclear			 { display: block; }
+
+
+/* =Layout and Function
+------------------------------------------------------------ */
+
+	/* =Header
+------------------------------------------------------------ */
+
+#header strong {
+	position: relative;
+	float: left;
+}
+
+#header strong a {
+	display: block;
+	width: 100%;
+	height: 100%;
+	font-size: 18px;
+}
+
+#header #search { /* Make the background textbox image the same height as the search button, and you'll be golden */
+	position: relative;
+	float: right;
+	background: url('/images/layout/header/search-bg.png') left top no-repeat;
+}
+
+#header #search input {
+	vertical-align: middle;
+}
+
+#header #search input#search-text {
+	width: 165px;
+	margin: 0 3px 0 0;
+	padding: 0 5px;
+}
+
+#header #search input#search-text:focus {
+	outline: 0;
+}
+
+#header #nav {
+	clear: both;
+	padding: 0 0 30px 0;
+}
+
+#header #nav ul li {
+	position: relative;
+	float: left;
+	padding: 0 20px 0 0;
+}
+
+
+	/* =Content
+------------------------------------------------------------ */
+
+
+
+	/* =Footer
+------------------------------------------------------------ */
