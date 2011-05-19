@@ -37,5 +37,17 @@ define('FOPEN_WRITE_CREATE_STRICT',				'xb');
 define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 
 
+/*
+|--------------------------------------------------------------------------
+| AJAX
+|--------------------------------------------------------------------------
+|
+| Determines whether or not this request came from AJAX
+|
+*/
+define('IS_AJAX', isset($_SERVER['HTTP_X_REQUESTED_WITH']) &&
+ strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest');
+
+
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */
