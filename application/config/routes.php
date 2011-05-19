@@ -38,9 +38,13 @@
 |
 */
 
-$route['default_controller'] = "welcome";
-$route['404_override'] = '';
+$route['default_controller'] = "posts";
 
+$route['posts/(:num)'] = "posts/show/$1";
+$route['posts/new'] = "posts/build";
+
+
+$route['404_override'] = '';
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

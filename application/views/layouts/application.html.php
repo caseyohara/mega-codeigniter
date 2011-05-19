@@ -6,7 +6,13 @@
 </head>
 <body>
 	
-	<?= $this->load->view($view) ?>
+	<?= $this->load->view('/shared/header.html.php') ?>
+	
+	<div id="content" class="autoclear">
+		<div id="main">	
+			<?= $this->load->view($view) ?>
+		</div>
+	</div>
 
 </body>
 </html>
