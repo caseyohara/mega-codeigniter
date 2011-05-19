@@ -1,0 +1,10 @@
+output: application.js
+input:
+  - src/jquery/jquery.js
+  - src/jquery/plugins/jquery.hashchange.js
+  - src/utils.js
+  - src/utils/hash.js
+  - src/application.js
+  - src/application/interface.js
+  - src/application/controller.js
+  - src/init.js
