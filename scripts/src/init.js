@@ -2,7 +2,7 @@
 // require jquery
 
 $(document).ready(function(){
-	
-	new Application.Controller();
-	
+  
+  new Application.Controller();
+  
 });

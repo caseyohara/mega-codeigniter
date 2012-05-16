@@ -431,25 +431,25 @@ b[0]&&b[0].ownerDocument||c);var h=[],i;for(var j=0,k;(k=a[j])!=null;j++){typeof
 
 /***** src/utils.js *****/
 var Utils = Utils || {
-	
-	extend : function(params, defaults) {
-		if( typeof params !== "undefined" && typeof params === "object") {
-			for(var index in defaults) {
-				if(typeof params[index] === "undefined") { 
-					params[index] = defaults[index]; 
-				}
-			}
-			return params;
-		}
-		else {
-			return defaults;
-		}
-	},
-	
-	default : function(param, default_value) {
-		return typeof param === 'undefined' ? default_value : param;		
-	}
-	
+  
+  extend : function(params, defaults) {
+    if( typeof params !== "undefined" && typeof params === "object") {
+      for(var index in defaults) {
+        if(typeof params[index] === "undefined") { 
+          params[index] = defaults[index]; 
+        }
+      }
+      return params;
+    }
+    else {
+      return defaults;
+    }
+  },
+  
+  default : function(param, default_value) {
+    return typeof param === 'undefined' ? default_value : param;    
+  }
+  
 };
 
 
@@ -460,119 +460,119 @@ var Utils = Utils || {
 
 Utils.Hash = function(config){
 
-	var self = this;
-	var defaults = { slash: true	};
-	var config = Utils.extend(config, defaults);
+  var self = this;
+  var defaults = { slash: true  };
+  var config = Utils.extend(config, defaults);
 
-	self.initialize = function(){
-		config.slash ? self.add_slash_to_path() : null;
-		return self;
-	};
+  self.initialize = function(){
+    config.slash ? self.add_slash_to_path() : null;
+    return self;
+  };
 
-	self.add_slash_to_path = function(){
-		if( location.pathname.charAt(location.pathname.length-1) !== "/"){
-			location.pathname += "/";
-		}
-	};
-	
-	self.add_slash_to_hash = function(hash){
-		if( hash.charAt(0) !== "/"){
-			hash = "/" + hash;
-		}
-		return hash;
-	};
-	
-	self.remove_trailing_slash = function(hash){
-		if( hash.charAt(hash.length - 1) === "/"){
-			hash = hash.substring(0, hash.length - 1);
-		}
-		return hash;
-	};	
-	
+  self.add_slash_to_path = function(){
+    if( location.pathname.charAt(location.pathname.length-1) !== "/"){
+      location.pathname += "/";
+    }
+  };
+  
+  self.add_slash_to_hash = function(hash){
+    if( hash.charAt(0) !== "/"){
+      hash = "/" + hash;
+    }
+    return hash;
+  };
+  
+  self.remove_trailing_slash = function(hash){
+    if( hash.charAt(hash.length - 1) === "/"){
+      hash = hash.substring(0, hash.length - 1);
+    }
+    return hash;
+  };  
+  
 
-	self.get = function(){
-		return location.hash;
-	};
+  self.get = function(){
+    return location.hash;
+  };
 
-	self.set = function(hash){
-		config.slash ? self.add_slash_to_path() : null;
-		config.slash ? hash = self.add_slash_to_hash(hash) : null;
-		location.hash = hash.replace(/-/g, "/");
-		return self.get();
-	};
-
-
-	self.element = function(){
-		var segments = self.segments();
-		var element = "";
-		
-		for ( var index in segments ) {
-			var segment = segments[index];
-			var even = (index % 2);
-			var odd = ! even;
-			
-			if ( index == 0 ) {
-				element += "#" + segment;
-			}
-			
-			else {
-
-				if ( odd ) {
-					element += " > ." + segment;
-				}
-
-				if ( even ) {
-					if ( ! isNaN(segment) ) {
-						var parent = segments[index - 1];
-						
-						if ( parent.charAt(parent.length - 1) === "s") {
-							parent = parent.substring(0, parent.length - 1);
-						}
-						
-						element += " > ." + parent + ":eq(" + ( segment - 1 ) + ")";						
-					}
-					else {
-						element += " > ." + segment;	
-					}
-				}
-				
-			}
-		};
-		
-		return element;
-	};
+  self.set = function(hash){
+    config.slash ? self.add_slash_to_path() : null;
+    config.slash ? hash = self.add_slash_to_hash(hash) : null;
+    location.hash = hash.replace(/-/g, "/");
+    return self.get();
+  };
 
 
-	self.segments = function(){
-		var hash = self.get();
-		var segments = self.remove_trailing_slash(hash).split("/");
-		segments.shift();
-		return segments;
-	};
+  self.element = function(){
+    var segments = self.segments();
+    var element = "";
+    
+    for ( var index in segments ) {
+      var segment = segments[index];
+      var even = (index % 2);
+      var odd = ! even;
+      
+      if ( index == 0 ) {
+        element += "#" + segment;
+      }
+      
+      else {
 
-	self.segment = function(index){
-		var segments = self.segments();
-		var segment = segments[index - 1];
-		if ( typeof segment === 'undefined' ) {
-			console.log("Error: Hash segment at index " + index + " does not exist");
-			return false;
-		}
-		return segment;
-	};
+        if ( odd ) {
+          element += " > ." + segment;
+        }
 
-	self.onChange = function(func){
-		
-		if( ! jQuery && jQuery().hashchange ) {
-			$(window).hashchange( func );
-		}
-		else {
-			window.onhashchange = func;
-		}
+        if ( even ) {
+          if ( ! isNaN(segment) ) {
+            var parent = segments[index - 1];
+            
+            if ( parent.charAt(parent.length - 1) === "s") {
+              parent = parent.substring(0, parent.length - 1);
+            }
+            
+            element += " > ." + parent + ":eq(" + ( segment - 1 ) + ")";            
+          }
+          else {
+            element += " > ." + segment;  
+          }
+        }
+        
+      }
+    };
+    
+    return element;
+  };
 
-	};
+
+  self.segments = function(){
+    var hash = self.get();
+    var segments = self.remove_trailing_slash(hash).split("/");
+    segments.shift();
+    return segments;
+  };
+
+  self.segment = function(index){
+    var segments = self.segments();
+    var segment = segments[index - 1];
+    if ( typeof segment === 'undefined' ) {
+      console.log("Error: Hash segment at index " + index + " does not exist");
+      return false;
+    }
+    return segment;
+  };
+
+  self.onChange = function(func){
+    
+    if( ! jQuery && jQuery().hashchange ) {
+      $(window).hashchange( func );
+    }
+    else {
+      window.onhashchange = func;
+    }
+
+  };
 
 
-	return self.initialize();
+  return self.initialize();
 };
 
 
@@ -582,27 +582,27 @@ var Application = Application || {};
 
 /***** src/application/interface.js *****/
 Application.Interface = function(){
-	
-	var self = this;
-	
-	self.initialize = function() {
-		self.build();
-		self.observe();
-		return self;
-	};
-	
-	
-	self.build = function() {
-		return self;
-	};
-	
-	
-	self.observe = function() {
-		return self;
-	};
+  
+  var self = this;
+  
+  self.initialize = function() {
+    self.build();
+    self.observe();
+    return self;
+  };
+  
+  
+  self.build = function() {
+    return self;
+  };
+  
+  
+  self.observe = function() {
+    return self;
+  };
 
-	
-	return self.initialize();
+  
+  return self.initialize();
 };
 
 
@@ -610,15 +610,15 @@ Application.Interface = function(){
 // require application/interface
 
 Application.Controller = function(){
-	
-	var self = this;
-	var interface = new Application.Interface(self);
-	
-	self.initialize = function() {
-		return self;
-	};
-	
-	return self.initialize();
+  
+  var self = this;
+  var interface = new Application.Interface(self);
+  
+  self.initialize = function() {
+    return self;
+  };
+  
+  return self.initialize();
 };
 
 
@@ -627,9 +627,9 @@ Application.Controller = function(){
 // require jquery
 
 $(document).ready(function(){
-	
-	new Application.Controller();
-	
+  
+  new Application.Controller();
+  
 });
 
 
